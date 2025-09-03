@@ -1,23 +1,16 @@
 import app from './app.ts';
-import mysql from 'mysql2/promise';
+import { pool } from './dbconfig.ts';
 
-export const pool = mysql.createPool({
-    host: process.env.MYSQL_HOST,
-    port: Number(process.env.MYSQL_PORT),
-    user: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD,
-    database: process.env.MYSQL_DB,
-})
-const PORT = Number(process.env.PORT);
+
+const PORT = Number(process.env.PORT || 4000);
 
 (async () => {
-    try {
-        await pool.getConnection();
+try {
+    await pool.getConnection();
         console.log('MySQL connected');
-        app.listen(
-            PORT, () => console.log(`Server running on port ${PORT}`));
-        } catch (err) {
+        app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+    } catch (err) {
         console.error('MySQL connection failed', err);
         process.exit(1);
-        }
+    }
 })();
