@@ -14,7 +14,7 @@ jest.mock('../middleware/Auth.ts');
     next();
 });
 
-describe("recipe tests", ()=>{ 
+describe("should recipe tests", ()=>{ 
     test("create recipe", async()=>{
         //arrange
         (create as jest.Mock).mockResolvedValue(mockedRecipe);
@@ -25,7 +25,7 @@ describe("recipe tests", ()=>{
         expect(response.body.recipe).toStrictEqual(mockedRecipe);
     });
 
-    test("get recipe",async ()=>{
+    test("should get recipe",async ()=>{
         //arrange
         (getById as jest.Mock).mockResolvedValue(mockedRecipe as Recipe);
         //act
@@ -35,7 +35,7 @@ describe("recipe tests", ()=>{
 
         expect(response.body).toStrictEqual(mockedRecipe);
     });
-    test("get all recipes",async ()=>{
+    test("should get all recipes",async ()=>{
         //arrange
         (getAll as jest.Mock).mockResolvedValue([mockedRecipe] as Recipe[]);
         //act
@@ -44,7 +44,7 @@ describe("recipe tests", ()=>{
         expect(response.status).toBe(200);
         expect(response.body).toStrictEqual([mockedRecipe]);
     });
-    test("update recipe", async()=>{
+    test("should update recipe", async()=>{
         //arrange
         (update as jest.Mock).mockResolvedValue(1);
         //act
@@ -53,7 +53,7 @@ describe("recipe tests", ()=>{
         expect(response.status).toBe(200);
         expect(response.body).toStrictEqual({ updated: true });
     });
-    test("delete recipe", async ()=>{
+    test("should delete recipe", async ()=>{
         //arrange
         (remove as jest.Mock).mockResolvedValue(1);
         //act
@@ -61,7 +61,7 @@ describe("recipe tests", ()=>{
         //assert
         expect(response.status).toBe(204);
     });
-    test("get recipes by username", async()=>{
+    test("should get recipes by username", async()=>{
         //arrange
         (getByUsername as jest.Mock).mockResolvedValue([mockedRecipe] as Recipe[]);
         //act
@@ -71,7 +71,7 @@ describe("recipe tests", ()=>{
         expect(response.body).toStrictEqual([mockedRecipe]);
     });
 
-    test("get recipe reviews", async()=>{
+    test("should get recipe reviews", async()=>{
         //arrange
         const mockReviews = [
             {id:1, recipeId:1, comment:"Great recipe!", rating:5, createdBy:"user1"},
@@ -85,7 +85,7 @@ describe("recipe tests", ()=>{
         expect(response.body).toStrictEqual(mockReviews);
     });
 
-    test("create review for recipe", async()=>{
+    test("should create review for recipe", async()=>{
         //arrange
         const mockReview = {id:1, recipeId:1, comment:"Great recipe!", rating:5, createdBy:"testuser"};
         (createReview as jest.Mock).mockResolvedValue(mockReview);
@@ -95,4 +95,6 @@ describe("recipe tests", ()=>{
         expect(response.status).toBe(201);
         expect(response.body.review).toStrictEqual(mockReview);
     });
+
+    
 });
