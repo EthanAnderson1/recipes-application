@@ -1,4 +1,4 @@
-import {create, findByUsername} from '../repositories/UserRepo.ts';
+import {create, findByUsername, addfavourite,removefavourite} from '../repositories/UserRepo.ts';
 import User from '../models/User.ts';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
@@ -18,4 +18,12 @@ export const verifyUser = async (username: string, password: string): Promise<st
     const exp = Math.floor(Date.now() / 1000)+parseInt(process.env.JWT_EXPIRES as string);
     const token = jwt.sign({data:{username: user.username},exp: exp}, process.env.JWT_SECRET as string);
     return token ;
+}
+
+export const addfavouriteRecipe = async (username: string, recipeId: number) : Promise<void> =>{
+     await addfavourite(username, recipeId);
+}
+
+export const removefavouriteRecipe = async (username: string, recipeId: number) : Promise<void> =>{
+     await removefavourite(username, recipeId);
 }

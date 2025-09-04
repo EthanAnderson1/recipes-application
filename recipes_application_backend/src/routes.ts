@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { signup, login } from './controllers/AuthController.ts';
-import { findRecipe, findAllRecipes, saveRecipe, removeRecipe, editRecipe, usersRecipies, getReviews, leaveReview } from './controllers/RecipeContoller.ts';
+import { signup, login, favouriteRecipe, unfavouriteRecipe } from './controllers/UserController.ts';
+import { findRecipe, findAllRecipes, saveRecipe, removeRecipe, editRecipe, usersRecipies, getReviews, leaveReview, favouriteRecipes } from './controllers/RecipeContoller.ts';
 import {verifyToken} from './middleware/Auth.ts';
 
 const router = Router();
