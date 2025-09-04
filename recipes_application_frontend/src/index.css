@@ -2,4 +2,9 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  --primary-colour: #75b9be;
+  --text-colour-light: #d8e8e6;
+  --text-colour-dark: #275842;
+  --background-colour: #e9f3cb;
+  --secondary-colour: #c7d66d;
 }

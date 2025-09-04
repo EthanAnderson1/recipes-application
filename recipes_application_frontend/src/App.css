@@ -1,0 +1,15 @@
+body {
+  background-color: var(--background-colour);
+  color: var(--text-colour);
+}
+
+.page {
+  justify-self: center;
+  align-self: center;
+  text-align: center;
+  height: 90vh;
+  width: 90vw;
+  display: flex;
+  flex-direction: column;
+}
+  
