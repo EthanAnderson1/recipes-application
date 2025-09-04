@@ -21,4 +21,10 @@ router.get('/recipesByUsername/:username',verifyToken,usersRecipies);
 
 router.post('/review',verifyToken,leaveReview);
 router.get('/reviews/:id',verifyToken,getReviews);
+
+router.post('/favourite',verifyToken,favouriteRecipe);
+router.delete('/unfavourite/:id',verifyToken,unfavouriteRecipe);  
+router.get('/favouriterecipes',verifyToken,favouriteRecipes);
+
+
 export default router;

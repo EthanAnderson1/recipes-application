@@ -89,3 +89,16 @@ export const createReview = async (recipeId: number, createdBy: string, comment:
     const [result] = await pool.query<any>(`INSERT INTO review (recipe_id, created_by, comment, rating) VALUES (?, ?,?,?)`, [recipeId, createdBy, comment, rating]);
     return { id: result.insertId, recipeId, createdBy, comment, rating } as Review;
 }
+
+export const getFavourites = async (username: string): Promise<Recipe[]> =>{
+    // eslint-disable-next-line
+    const [rows] = await pool.query<any[]>(`SELECT r.* FROM recipe r INNER JOIN favourite f ON r.id = f.recipe_id WHERE f.username = ?`, [username]);
+    return rows.map(row => ({
+        id: row.id,
+        title: row.title,
+        cookingTime: row.cooking_time,
+        instructions: row.instructions,
+        ingredients: JSON.parse(row.ingredients),
+        createdBy: row.created_by,
+    } as Recipe));
+}

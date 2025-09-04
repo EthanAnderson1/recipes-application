@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
-import { createRecipe, getRecipe, getAllRecipes, deleteRecipe, updateRecipe,getRecipeByUsername,getRecipeReviews,addRecipeReview} from '../services/RecipeService.ts';
+import { createRecipe, getRecipe, getAllRecipes, deleteRecipe, updateRecipe,getRecipeByUsername,getRecipeReviews,addRecipeReview, getFavouriteRecipes} from '../services/RecipeService.ts';
+import {Recipe} from '../models/Recipe.ts';
 
 export const saveRecipe = async (req: Request, res: Response)=> {
     const { title, cookingTime, instructions, ingredients } = req.body;
@@ -52,4 +53,10 @@ export const getReviews = async (req: Request, res: Response) =>{
     const recipeId = Number(req.params.id);
     const reviews = await getRecipeReviews(recipeId);
     res.json(reviews);
+}
+
+export const favouriteRecipes = async (req: Request, res: Response) =>{
+    // eslint-disable-next-line
+    const recipes: Recipe[] = await getFavouriteRecipes((req as any).user.data.username);
+    res.json(recipes);
 }

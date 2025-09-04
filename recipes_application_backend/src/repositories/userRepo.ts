@@ -18,3 +18,13 @@ export const findByUsername = async (username: string): Promise<User | null> =>{
     const row= rows[0] as any;
     return { username: row.username, password: row.password } as User;
 }
+
+export const addfavourite = async (username: string, recipeId: number): Promise<void> =>{
+    const query = `INSERT INTO favourite (username, recipe_id) VALUES (?, ?)`;
+    await pool.query<ResultSetHeader>(query,[username,recipeId]);
+}
+
+export const removefavourite = async (username: string, recipeId: number): Promise<void> =>{
+    const query = `DELETE FROM favourite WHERE username = ? AND recipe_id = ?`;
+    await pool.query<ResultSetHeader>(query,[username,recipeId]);
+}

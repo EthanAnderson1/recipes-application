@@ -32,10 +32,10 @@ FOREIGN KEY (created_by) REFERENCES user(username) ON DELETE CASCADE
 );
 
 
-CREATE TABLE IF NOT EXISTS favorite (
-created_by VARCHAR(255) NOT NULL,
+CREATE TABLE IF NOT EXISTS favourite (
+username VARCHAR(255) NOT NULL,
 recipe_id INT NOT NULL,
-PRIMARY KEY (created_by, recipe_id),
-FOREIGN KEY (created_by) REFERENCES user(username) ON DELETE CASCADE,
+PRIMARY KEY (username, recipe_id),
+FOREIGN KEY (username) REFERENCES user(username) ON DELETE CASCADE,
 FOREIGN KEY (recipe_id) REFERENCES recipe(id) ON DELETE CASCADE
 );

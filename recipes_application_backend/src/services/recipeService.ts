@@ -1,8 +1,6 @@
-import {create, getById,getAll,getByUsername,update,remove,getReviews,createReview}  from '../repositories/RecipeRepo.ts';
+import {create, getById,getAll,getByUsername,update,remove,getReviews,createReview,getFavourites}  from '../repositories/RecipeRepo.ts';
 import {Recipe} from '../models/Recipe.ts';
 import {Review} from '../models/Review.ts';
-
-
 
 export const createRecipe = async (title: string, cookingTime: number, instructions: string, ingredients: string[], createdBy: string) :Promise<Recipe> =>{
     return create(title, cookingTime, instructions, ingredients, createdBy);
@@ -38,3 +36,7 @@ export const getRecipeReviews = async (recipeId: number) : Promise<Review[]> =>{
 export const addRecipeReview = async (recipeId: number, createdBy: string, comment: string, rating: number) : Promise<Review> =>{
     return createReview( recipeId, createdBy, comment, rating);
 }
+
+export const getFavouriteRecipes = async (username: string): Promise<Recipe[]> =>{
+    return getFavourites(username);
+}    

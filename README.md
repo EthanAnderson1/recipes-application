@@ -44,7 +44,7 @@ Initial plans/docs
         further development
             pagination on retrival of recipes
 
-        Get "/getfavoriterecipes"
+        Get "/getfavouriterecipes"
         recipe list getfavouriteRecipes(username(string))
 
         Delete "/deleterecipe{id}"
