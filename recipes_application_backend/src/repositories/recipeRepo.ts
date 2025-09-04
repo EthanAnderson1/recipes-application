@@ -60,7 +60,6 @@ export const update = async (id: number, title?: string, cookingTime?: number, i
 
 export const create = async (title: string, cookingTime: number, instructions: string, ingredients: string[], createdBy: string): Promise<Recipe> =>{
     const query = `INSERT INTO recipe (title, cooking_time, instructions, ingredients, created_by) VALUES (?, ?, ?, ?, ?)`;
-    console.log(title, cookingTime, instructions, JSON.stringify(ingredients), createdBy)
     // eslint-disable-next-line
     const [result] = await pool.query<any>(query,[title, cookingTime, instructions, JSON.stringify(ingredients), createdBy]);
     return { id: result.insertId, title, cookingTime, instructions, ingredients, createdBy } as Recipe;
