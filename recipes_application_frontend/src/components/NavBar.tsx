@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../services/UserContext.tsx";
 
-export default function AppNavbar() {
+export const AppNavbar = ()=> {
   const navigate = useNavigate();
-  const [setUser] = useContext(UserContext);
+  const [user, setUser] = useContext(UserContext);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -13,7 +13,9 @@ export default function AppNavbar() {
     navigate("/login");
   };
 
+
   return (
+    user?
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
         <Navbar.Brand style={{ cursor: "pointer" }} onClick={() => navigate("/")}>
@@ -30,6 +32,6 @@ export default function AppNavbar() {
           </Nav>
         </Navbar.Collapse>
       </Container>
-    </Navbar>
+    </Navbar>:<></>
   );
 }

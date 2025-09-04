@@ -3,7 +3,7 @@ import { useState } from 'react';
 import HomePage from './pages/HomePage.tsx';
 import LoginPage from './pages/LoginPage.tsx';
 import SignupPage from './pages/SignupPage.tsx';
-import NavBar from './components/NavBar.tsx';
+import {AppNavbar} from './components/NavBar.tsx';
 import { UserContext } from './services/UserContext.tsx';
 import './App.css'
 
@@ -12,7 +12,7 @@ function App() {
   return (
     <UserContext.Provider value={[user, setUser]}>
     <Router>
-      {user&& <NavBar/>}
+      <AppNavbar/>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />

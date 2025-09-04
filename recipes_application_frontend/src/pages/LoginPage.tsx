@@ -11,12 +11,16 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const [user, setUser] = useContext(UserContext);
-  console.log(user);
+
   useEffect(() => {
-    if (username) {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setUser( jwtDecode(token).data.username);
+    }
+    if (user) {
       navigate("/");
     }
-  },[]);
+  },[user]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
