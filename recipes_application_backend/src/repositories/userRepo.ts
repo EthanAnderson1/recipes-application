@@ -5,8 +5,8 @@ import { ResultSetHeader} from 'mysql2';
 
 export const create = async (username: string, password: string): Promise<User> =>{
     const query = `INSERT INTO user (username, password) VALUES (?, ?)`;
-    const [result] = await pool.query<ResultSetHeader>(query,[username,password]);
-    return { id: result.insertId, username, password } as User;
+    await pool.query<ResultSetHeader>(query,[username,password]);
+    return {username, password } as User;
 }
 
 export const findByUsername = async (username: string): Promise<User | null> =>{
@@ -16,5 +16,5 @@ export const findByUsername = async (username: string): Promise<User | null> =>{
     if (rows.length === 0) return null;
     // eslint-disable-next-line
     const row= rows[0] as any;
-    return { id: row.id, username: row.username, password: row.password } as User;
+    return { username: row.username, password: row.password } as User;
 }

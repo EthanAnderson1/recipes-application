@@ -16,6 +16,6 @@ export const verifyUser = async (username: string, password: string): Promise<st
     if (!ok) throw { status: 400, message: 'Invalid credentials' };
     //1 day expiration
     const exp = Math.floor(Date.now() / 1000)+parseInt(process.env.JWT_EXPIRES as string);
-    const token = jwt.sign({data:{id: user.id, username: user.username},exp: exp}, process.env.JWT_SECRET as string);
+    const token = jwt.sign({data:{username: user.username},exp: exp}, process.env.JWT_SECRET as string);
     return token ;
 }

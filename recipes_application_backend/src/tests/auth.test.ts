@@ -5,7 +5,7 @@ import {create, findByUsername} from '../repositories/UserRepo.ts';
 import bcrypt from 'bcryptjs';
 
 jest.mock("../repositories/UserRepo.ts");
-const mockedUser = { id: 1, username: "test", password: "password" } as User;
+const mockedUser = {username: "test", password: "password" } as User;
 describe("Auth Tests",  ()=>{
     test("should create a new user",async ()=>{
         //arrange
@@ -20,7 +20,7 @@ describe("Auth Tests",  ()=>{
     test("should take a loging and return a jwt token", async ()=>{
         //arrange
         const hash = await bcrypt.hash(mockedUser.password,10)
-        const user = {id: mockedUser.id, username: mockedUser.username, password: hash} as User
+        const user = {username: mockedUser.username, password: hash} as User
         (findByUsername as jest.Mock).mockResolvedValue(user);
         //act
         const response = await request(app).post('/login').send({ username: "test", password: "password" });
