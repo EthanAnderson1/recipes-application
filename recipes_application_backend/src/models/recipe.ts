@@ -1,4 +1,4 @@
-import Review from './Review.ts';
+import {Review} from './Review.ts';
 
 export interface Recipe {
     id: number;

@@ -1,4 +1,4 @@
-export default interface Review {
+export interface Review {
     id: number;
     recipeId: number;
     comment: string;

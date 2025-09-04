@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { createRecipe, getRecipe, getAllRecipes, deleteRecipe, updateRecipe,getRecipeByUsername} from '../services/RecipeService.ts';
+import { createRecipe, getRecipe, getAllRecipes, deleteRecipe, updateRecipe,getRecipeByUsername,getRecipeReviews,addRecipeReview} from '../services/RecipeService.ts';
 
 export const saveRecipe = async (req: Request, res: Response)=> {
     const { title, cookingTime, instructions, ingredients } = req.body;
@@ -39,4 +39,17 @@ export const usersRecipies = async (req: Request, res: Response) =>{
     const username = String(req.params.username);
     const recipes = await getRecipeByUsername(username);
     res.json(recipes);
+}
+
+export const leaveReview = async (req: Request, res: Response) =>{
+    const {recipeId, comment, rating } = req.body;
+    // eslint-disable-next-line
+    const review = await addRecipeReview( recipeId, (req as any).user.data.username, comment, rating );
+    res.status(201).json({ review });
+}
+
+export const getReviews = async (req: Request, res: Response) =>{
+    const recipeId = Number(req.params.id);
+    const reviews = await getRecipeReviews(recipeId);
+    res.json(reviews);
 }

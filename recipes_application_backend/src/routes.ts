@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { signup, login } from './controllers/AuthController.ts';
-import { findRecipe, findAllRecipes, saveRecipe, removeRecipe, editRecipe, usersRecipies } from './controllers/RecipeContoller.ts';
+import { findRecipe, findAllRecipes, saveRecipe, removeRecipe, editRecipe, usersRecipies, getReviews, leaveReview } from './controllers/RecipeContoller.ts';
 import {verifyToken} from './middleware/Auth.ts';
 
 const router = Router();
@@ -19,4 +19,6 @@ router.delete('/recipe/:id',verifyToken,removeRecipe);
 router.put('/recipe',verifyToken,editRecipe);
 router.get('/recipesByUsername/:username',verifyToken,usersRecipies);
 
+router.post('/review',verifyToken,leaveReview);
+router.get('/reviews/:id',verifyToken,getReviews);
 export default router;

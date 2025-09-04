@@ -1,6 +1,6 @@
 import { pool } from '../dbconfig.ts';
 import { Recipe } from '../models/Recipe.ts';
-
+import { Review } from '../models/Review.ts';
 
 export const getAll= async()=> {
     // eslint-disable-next-line
@@ -70,4 +70,22 @@ export const remove = async (id: number): Promise<number>=> {
     // eslint-disable-next-line
     const [result] = await pool.query<any>('DELETE FROM recipe WHERE id = ?', [id]);
     return result.affectedRows;
+}
+
+export const getReviews = async (recipeId: number) : Promise<Review[]> =>{
+    // eslint-disable-next-line
+    const [rows] = await pool.query<any[]>(`SELECT * FROM review WHERE recipe_id = ?`, [recipeId]);
+    return rows.map(row => ({
+        id: row.id,
+        recipeId: row.recipe_id,
+        comment: row.comment,
+        rating: row.rating,
+        createdBy: row.created_by,
+    } as Review));;
+}
+
+export const createReview = async (recipeId: number, createdBy: string, comment: string, rating: number ):Promise<Review> =>{
+    // eslint-disable-next-line
+    const [result] = await pool.query<any>(`INSERT INTO review (recipe_id, created_by, comment, rating) VALUES (?, ?,?,?)`, [recipeId, createdBy, comment, rating]);
+    return { id: result.insertId, recipeId, createdBy, comment, rating } as Review;
 }
