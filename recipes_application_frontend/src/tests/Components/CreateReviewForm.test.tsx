@@ -2,8 +2,8 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import {ReviewForm} from '../../components/CreateReviewForm';
 import "@testing-library/jest-dom"
 
-describe('CreateRecipeForm test', () => {
-    describe('create recipe form renders', ()=>{
+describe('CreateReviewForm test', () => {
+    describe('create review form renders', ()=>{
       it('should renders form fields', () => {
         //Arrange
           render(<ReviewForm />);
@@ -13,7 +13,7 @@ describe('CreateRecipeForm test', () => {
       });
     });
     
-    describe('create recipe form renders', ()=>{
+    describe('create reivew form renders', ()=>{
       it('calls onSubmit when form is submitted', () => {
       //Arrange
         const handleSubmit = jest.fn();
