@@ -28,10 +28,10 @@ export default function HomePage() {
       <h1>🍲 Welcome to Recipe App</h1>
       <p className="lead">Discover, share and review amazing recipes.</p>
         <Row className="main-content">
-          <Col className="content-section mb-3 p-3 border rounded">
+          <Col>
             <FavouriteRecipes />
           </Col>
-          <Col className="content-section mb-3 p-3 border rounded"> 
+          <Col> 
             <MyRecipes />
           </Col>
           <Col className="content-section mb-3 p-3 border rounded">
