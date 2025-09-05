@@ -1,18 +1,42 @@
-# recipes-application
-Initial plans/docs
-    Stack
-        Frontend
-            React.js
-        Backend
-            Express.js
-            - Light weight, good for simple web application
-        Database
-            MySQL
-            - Relational Database rather than a NoSQL such as mongoDB as all model definitions are strict and well understood.
+# recipes-application docs
+    Frontend - Vite React.js
+        Set up
+        clone repo
+        cd recipes_application_frontend
+        install npm and run "npm i"
+        change baseURL in services/api.ts to point to your server
+        run "npm run dev" for running locally on http://localhost:5173/
+        run "npm test" for running test suite
 
-    Colour palette
-    pastle colours {"Verdigris":"75b9be","Light blue":"a8ccc9","Ash gray":"b3d6c6","Tea green":"dceab2","Straw":"c7d66d"}
+    Backend - Express.js
+        Set up
+        clone repo
+        cd recipes_application_backend
+        add .env file to root for local variables
+            e.g. 
+            {
+                PORT=8000
+                MYSQL_USER=root
+                MYSQL_PASSWORD=password
+                MYSQL_HOST=localhost
+                MYSQL_PORT=3306
+                MYSQL_DB=recipe_app
+                JWT_SECRET=topsecret
+                JWT_EXPIRES=86400
+            }
 
+        install npm and run "npm i"
+        run "npm run dev" for running locally on http://localhost:{.env:PORT}/
+        run "npm test" for running test suite
+
+    Database - MySQL
+        Set up
+        Start a MySQL database, 
+        I used this docker image https://hub.docker.com/_/mysql
+        run the schema.sql file in a MySQL database
+        test connections with backend
+
+Planned Architecture
     Models
         Recipe
             Attrributes
@@ -32,7 +56,6 @@ Initial plans/docs
 
     Endpoints
         MVP
-
         Post "/createrecipe"
         recipe createRecipe(title (String), cooking time (int), instructions (String), ingredients (String array), created by(user_id))
 
