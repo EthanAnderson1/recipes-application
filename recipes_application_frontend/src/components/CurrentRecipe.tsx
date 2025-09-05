@@ -19,18 +19,21 @@ export const CurrentRecipe = ()=>{
         rating = "No ratings yet";
     }
 
+    const fetchReviews = async () => {
+        if(recipe){
+            try {
+                const token = localStorage.getItem("token");
+                const res = await api.get(`/reviews/${recipe.id}`, {
+                headers: { Authorization: `Bearer ${token}` }
+                });
+                setReviews(res.data);
+            } catch (err) {
+                console.error("Failed to fetch reviews", err);
+            }
+        }
+    };
+
     useEffect(() => {
-        const fetchReviews = async () => {
-                try {
-                    const token = localStorage.getItem("token");
-                    const res = await api.get(`/reviews/${recipe.id}`, {
-                    headers: { Authorization: `Bearer ${token}` }
-                    });
-                    setReviews(res.data);
-                } catch (err) {
-                    console.error("Failed to fetch reviews", err);
-                }
-            };
         fetchReviews();
     }, [recipe]);
 
@@ -64,7 +67,7 @@ export const CurrentRecipe = ()=>{
             <h3>Created By: {recipe.createdBy}</h3>
             <h3>Cooking Time: {recipe.cookingTime} mins</h3>
             <h3>Ingredients: {recipe.ingredients?.map(
-                ingredient => <span>{ingredient} </span>
+                (ingredient: string,index:number) => <span key={index} >{ingredient} </span>
                 )}
             </h3>
             <h3>Instructions: {recipe.instructions}</h3>

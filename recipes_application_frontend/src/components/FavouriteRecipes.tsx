@@ -9,8 +9,7 @@ export const FavouriteRecipes = () => {
     const [recipes, setRecipes] = useState([]);
     const [recipe, setRecipe] = useContext(RecipeContext);
 
-    useEffect(() => {
-        const fetchFavouriteRecipes = async () => {
+    const fetchFavouriteRecipes = async () => {
             const token = localStorage.getItem("token");
             try {
                 const res = await api.get(`/favouriteRecipes`, {
@@ -21,6 +20,8 @@ export const FavouriteRecipes = () => {
                 console.error("Failed to fetch recipes", err);
             }
         };
+    
+    useEffect(() => {
         fetchFavouriteRecipes();
       }, [recipe]);
     return (

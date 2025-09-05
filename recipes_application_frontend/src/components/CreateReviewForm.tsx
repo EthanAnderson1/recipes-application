@@ -15,7 +15,6 @@ export const ReviewForm = () =>{
         e.preventDefault();
         try {
             const token = localStorage.getItem("token");
-            console.log("Submitting review for recipe ID:", recipe.id);
             const recipeId = recipe.id;
             await api.post(
                 "/review",{recipeId,comment,rating},

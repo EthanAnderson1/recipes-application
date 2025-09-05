@@ -1,6 +1,7 @@
 import type Review from "../models/review";
 
-export const ReviewCard = (prop) => {
+//eslint-disable-next-line
+export const ReviewCard = (prop:any) => {
 
     const reviewProp: Review = prop.prop as Review;
 

@@ -24,5 +24,5 @@ export const RecipeCard = (prop: any) => {
             </Row>
             <Button variant="primary" onClick={handleSelect}>Select recipe</Button>
         </Container>
-        );
+    );
 }
