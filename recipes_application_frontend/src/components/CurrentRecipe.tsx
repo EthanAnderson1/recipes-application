@@ -76,7 +76,7 @@ export const CurrentRecipe = ()=>{
             <br />
             <h3>Reviews:</h3>
             {reviews?.map(
-                review => <div key={review?.id} className="mb-2 p-2 border rounded">
+                review => <div key={review?.id} className="mb-2 border rounded">
                     <ReviewCard prop={review}/>
                 </div>
             )}
