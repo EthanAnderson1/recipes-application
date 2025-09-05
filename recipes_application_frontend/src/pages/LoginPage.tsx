@@ -54,7 +54,6 @@ export default function LoginPage() {
       <Link to="/signup">
         <Button  variant="info">Create Account</Button>
       </Link>
-      
     </Container>
   );
 }

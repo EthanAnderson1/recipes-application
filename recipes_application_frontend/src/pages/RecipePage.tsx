@@ -12,11 +12,13 @@ import { CurrentRecipe } from "../components/CurrentRecipe.tsx";
 import { RecipeContext } from "../services/RecipeContext.tsx";
 
 export default function RecipesPage() {
+    
     const [recipe, setRecipe] = useContext(RecipeContext);
     const [recipes, setRecipes] = useState<Recipe[]>([]);
     const navigate = useNavigate();
     const [user, setUser] = useContext(UserContext);
     const token = localStorage.getItem("token");
+
     useEffect(() => {
         if (token) {
             setUser( jwtDecode(token).data.username);
@@ -24,18 +26,18 @@ export default function RecipesPage() {
         if (!user) {
             navigate("/login");
         }
-    },[user]);
+    },[]);
 
     useEffect(() => {
         const fetchRecipes = async () => {
-        try {
-            const res = await api.get("/recipes", {
-            headers: { Authorization: `Bearer ${token}` }
-            });
-            setRecipes(res.data);
-        } catch (err) {
-            console.error("Failed to fetch recipes", err);
-        }
+            try {
+                const res = await api.get("/recipes", {
+                headers: { Authorization: `Bearer ${token}` }
+                });
+                setRecipes(res.data);
+            } catch (err) {
+                console.error("Failed to fetch recipes", err);
+            }
         };
     fetchRecipes();
   }, [recipe]);

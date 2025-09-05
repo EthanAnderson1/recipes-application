@@ -7,6 +7,7 @@ import { RecipeContext } from "../services/RecipeContext.tsx";
 import type Recipe from "../models/recipe.ts";
 
 export const RecipeForm = () =>{
+
     const [title, setTitle] = useState("");
     const [cookingTime, setCookingTime] = useState<number>(0);
     const [instructions, setInstructions] = useState("");
@@ -14,6 +15,7 @@ export const RecipeForm = () =>{
     const [message, setMessage] = useState("");
     const [user, setUser] = useContext(UserContext);
     const [recipe,setRecipe] = useContext(RecipeContext);
+    
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {

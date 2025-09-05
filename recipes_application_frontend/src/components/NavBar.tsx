@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { UserContext } from "../services/UserContext.tsx";
 
 export const AppNavbar = ()=> {
+
   const navigate = useNavigate();
   const [user, setUser] = useContext(UserContext);
 
@@ -12,7 +13,6 @@ export const AppNavbar = ()=> {
     setUser(null);
     navigate("/login");
   };
-
 
   return (
     user?

@@ -5,11 +5,13 @@ import { useNavigate, Link } from "react-router-dom";
 import { UserContext } from "../services/UserContext.tsx";
 
 export default function SignupPage() {
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const [user] = useContext(UserContext);
+  
   useEffect(() => {
     if (user) {
       navigate("/");

@@ -7,6 +7,7 @@ export const CurrentRecipe = ()=>{
 
     const [recipe,setRecipe] = useContext(RecipeContext);
     const [reviews,setReviews] = useState([]);
+
     useEffect(() => {
         const fetchReviews = async () => {
                 try {
@@ -19,7 +20,7 @@ export const CurrentRecipe = ()=>{
                     console.error("Failed to fetch reviews", err);
                 }
             };
-            fetchReviews();
+        fetchReviews();
     }, [recipe]);
 
     return (

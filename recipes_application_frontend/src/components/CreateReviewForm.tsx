@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { RecipeContext } from "../services/RecipeContext.tsx";
 
 export const ReviewForm = () =>{
+    
     const [comment, setComment] = useState("");
     const [rating, setRating] = useState<number>(5);
     const [message, setMessage] = useState("");
@@ -13,24 +14,24 @@ export const ReviewForm = () =>{
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-        const token = localStorage.getItem("token");
-        console.log("Submitting review for recipe ID:", recipe.id);
-        const recipeId = recipe.id;
-        await api.post(
-            "/review",{recipeId,comment,rating},
-            { headers: { Authorization: `Bearer ${token}` } }
-        );
-        setMessage("Review added successfully!");
-        window.setTimeout(()=>{
-            setMessage("")
-        },2000)
-        setRecipe({...recipe});
+            const token = localStorage.getItem("token");
+            console.log("Submitting review for recipe ID:", recipe.id);
+            const recipeId = recipe.id;
+            await api.post(
+                "/review",{recipeId,comment,rating},
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+            setMessage("Review added successfully!");
+            window.setTimeout(()=>{
+                setMessage("")
+            },2000);
+            setRecipe({...recipe});
         //eslint-disable-next-line
         } catch (err: any) {
-        setMessage(err.response?.data?.message || "Failed to add review");
-        window.setTimeout(()=>{
-            setMessage("")
-        },2000)
+            setMessage(err.response?.data?.message || "Failed to add review");
+            window.setTimeout(()=>{
+                setMessage("")
+            },2000)
         }
     };
 

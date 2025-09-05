@@ -10,8 +10,10 @@ import './App.css'
 import { RecipeContext } from './services/RecipeContext.tsx';
 
 function App() {
+
   const [user, setUser] = useState(null);
   const [recipe, setRecipe] = useState(null);
+  
   return (
     <UserContext.Provider value={[user, setUser]}>
       <RecipeContext.Provider value={[recipe, setRecipe]}>

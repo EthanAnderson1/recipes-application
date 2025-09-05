@@ -4,16 +4,17 @@ import { useContext, useEffect } from "react";
 import { RecipeContext } from "../services/RecipeContext";
 //eslint-disable-next-line
 export const RecipeCard = (prop: any) => {
+
     const recipeProp: Recipe = prop.prop as Recipe;
     const [recipe, setRecipe] = useContext(RecipeContext);
+
     const handleSelect = (e) => {
         e.preventDefault();
         setRecipe(recipeProp);
     };
 
     return (
-        <Container className="recipe-card mb-3 p-3 border rounded">
-            
+        <Container className="recipe-card mb-3 p-3 border rounded">   
             <h3>{recipeProp.title}</h3>
             <p>Created By: {recipeProp.createdBy}</p>
             <Row>
@@ -24,7 +25,6 @@ export const RecipeCard = (prop: any) => {
                     <p>Rating: 5 stars</p>
                 </Col>
             </Row>
-            
             <Button variant="primary" onClick={handleSelect}>Select recipe</Button>
         </Container>
 
