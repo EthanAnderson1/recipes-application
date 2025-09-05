@@ -6,4 +6,5 @@ export default interface Recipe {
     ingredients: string[];
     instructions: string;
     reviews: review[];
+    createdBy: string;
 }
