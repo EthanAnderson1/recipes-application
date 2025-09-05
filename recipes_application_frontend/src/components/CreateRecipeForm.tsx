@@ -49,14 +49,15 @@ export const RecipeForm = () =>{
     <Container className="mt-4">
       <h3>Create Recipe</h3>
       {message && <Alert>{message}</Alert>}
-      <Form onSubmit={handleSubmit}>
+      <Form data-testid="createRecipeForm" onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
-          <Form.Label>Title</Form.Label>
-          <Form.Control value={title} onChange={(e) => setTitle(e.target.value)} required />
+          <Form.Label htmlFor="title">Title</Form.Label>
+          <Form.Control id="title" value={title} onChange={(e) => setTitle(e.target.value)} required />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Cooking Time (minutes)</Form.Label>
+          <Form.Label htmlFor="cooking-time">Cooking Time (minutes)</Form.Label>
           <Form.Control
+            id="cooking-time"
             type="number"
             value={cookingTime}
             onChange={(e) => setCookingTime(parseInt(e.target.value))}
@@ -64,12 +65,12 @@ export const RecipeForm = () =>{
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Ingredients (comma separated)</Form.Label>
-          <Form.Control value={ingredients} onChange={(e) => setIngredients(e.target.value)} required />
+          <Form.Label htmlFor="ingredients">Ingredients (comma separated)</Form.Label>
+          <Form.Control id="ingredients" value={ingredients} onChange={(e) => setIngredients(e.target.value)} required />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Instructions</Form.Label>
-          <Form.Control as="textarea" rows={4} value={instructions} onChange={(e) => setInstructions(e.target.value)} required />
+          <Form.Label htmlFor="instructions">Instructions</Form.Label>
+          <Form.Control id="instructions" as="textarea" rows={4} value={instructions} onChange={(e) => setInstructions(e.target.value)} required />
         </Form.Group>
         <Button type="submit" variant="success">
           Create Recipe
