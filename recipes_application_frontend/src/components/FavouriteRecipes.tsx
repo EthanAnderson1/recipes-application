@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import {api} from "../services/API.ts";
 import{ Row} from "react-bootstrap";
-import { RecipeCard } from "./RecipeCard.tsx";
+import { FavouriteRecipeCard } from "./FavouriteRecipeCard.tsx";
+import { RecipeContext } from "../services/RecipeContext.tsx";
 
 export const FavouriteRecipes = () => {
 
     const [recipes, setRecipes] = useState([]);
-    
+    const [recipe, setRecipe] = useContext(RecipeContext);
+
     useEffect(() => {
         const fetchFavouriteRecipes = async () => {
             const token = localStorage.getItem("token");
@@ -20,13 +22,13 @@ export const FavouriteRecipes = () => {
             }
         };
         fetchFavouriteRecipes();
-      }, []);
+      }, [recipe]);
     return (
         <div>
             <h2>Favourite Recipes</h2>
             {recipes.map((r) => (
                 <Row key={r.id}>
-                    <RecipeCard prop={r}/>
+                    <FavouriteRecipeCard prop={r}/>
                 </Row>
             ))}
         </div>
