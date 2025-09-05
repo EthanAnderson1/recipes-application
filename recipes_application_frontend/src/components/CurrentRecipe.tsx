@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect,useState } from "react";
 import { RecipeContext } from "../services/RecipeContext";
 import { api } from "../services/API.ts";
 import { ReviewForm } from "./CreateReviewForm.tsx";
@@ -6,7 +6,7 @@ import { ReviewForm } from "./CreateReviewForm.tsx";
 export const CurrentRecipe = ()=>{
 
     const [recipe,setRecipe] = useContext(RecipeContext);
-
+    const [reviews,setReviews] = useState([]);
     useEffect(() => {
         const fetchReviews = async () => {
                 try {
@@ -14,8 +14,7 @@ export const CurrentRecipe = ()=>{
                     const res = await api.get(`/reviews/${recipe.id}`, {
                     headers: { Authorization: `Bearer ${token}` }
                     });
-                    recipe.reviews = res.data;
-                    setRecipe(recipe);
+                    setReviews(res.data);
                 } catch (err) {
                     console.error("Failed to fetch reviews", err);
                 }
@@ -39,11 +38,11 @@ export const CurrentRecipe = ()=>{
             <ReviewForm />
             <br />
             <h3>Reviews:</h3>
-            {recipe.reviews?.map(
-                review => <div key={review.id} className="mb-2 p-2 border rounded">
-                    <p>Rating: {review.rating} stars</p>
-                    <p>Comment: {review.comment}</p>
-                    <p>By: {review.createdBy}</p>
+            {reviews?.map(
+                review => <div key={review?.id} className="mb-2 p-2 border rounded">
+                    <p>Rating: {review?.rating} stars</p>
+                    <p>Comment: {review?.comment}</p>
+                    <p>By: {review?.createdBy}</p>
                 </div>
             )}
         </div>:
