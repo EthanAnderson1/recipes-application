@@ -39,10 +39,11 @@ export const ReviewForm = () =>{
     <Container className="mt-4">
       <h4>Add a Review</h4>
       {message && <Alert>{message}</Alert>}
-      <Form onSubmit={handleSubmit}>
+      <Form data-testid='createReviewForm' onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
-          <Form.Label>Rating (1-5)</Form.Label>
+          <Form.Label htmlFor="rating">Rating (1-5)</Form.Label>
           <Form.Control
+            id="rating"
             type="number"
             min={1}
             max={5}
@@ -52,8 +53,9 @@ export const ReviewForm = () =>{
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Comment</Form.Label>
+          <Form.Label htmlFor="comment">Comment</Form.Label>
           <Form.Control
+            id="comment"
             as="textarea"
             rows={3}
             value={comment}
