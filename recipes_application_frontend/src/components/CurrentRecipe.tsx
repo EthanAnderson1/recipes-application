@@ -2,6 +2,7 @@ import { useContext, useEffect,useState } from "react";
 import { RecipeContext } from "../services/RecipeContext";
 import { api } from "../services/API.ts";
 import { ReviewForm } from "./CreateReviewForm.tsx";
+import { ReviewCard } from "./ReviewCard.tsx";
 
 export const CurrentRecipe = ()=>{
 
@@ -41,9 +42,7 @@ export const CurrentRecipe = ()=>{
             <h3>Reviews:</h3>
             {reviews?.map(
                 review => <div key={review?.id} className="mb-2 p-2 border rounded">
-                    <p>Rating: {review?.rating} stars</p>
-                    <p>Comment: {review?.comment}</p>
-                    <p>By: {review?.createdBy}</p>
+                    <ReviewCard prop={review}/>
                 </div>
             )}
         </div>:
