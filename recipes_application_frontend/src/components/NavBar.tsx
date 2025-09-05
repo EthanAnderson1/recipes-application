@@ -2,15 +2,18 @@ import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../services/UserContext.tsx";
+import { RecipeContext } from "../services/RecipeContext.tsx";
 
 export const AppNavbar = ()=> {
 
   const navigate = useNavigate();
   const [user, setUser] = useContext(UserContext);
+  const [recipe, setRecipe] = useContext(RecipeContext);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     setUser(null);
+    setRecipe(null);
     navigate("/login");
   };
 

@@ -31,11 +31,11 @@ export default function HomePage() {
           <Col>
             <FavouriteRecipes />
           </Col>
-          <Col> 
-            <MyRecipes />
-          </Col>
           <Col className="content-section mb-3 p-3 border rounded">
             <CurrentRecipe/>
+          </Col>
+          <Col> 
+            <MyRecipes />
           </Col>
         </Row>
     </Container>

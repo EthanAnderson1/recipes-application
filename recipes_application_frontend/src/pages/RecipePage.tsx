@@ -46,10 +46,7 @@ export default function RecipesPage() {
     <Container className=" mt-5 page">
         <h1>Recipes</h1> 
             <Row className="main-content">
-                <Col className="content-section mb-3 p-3 border rounded">
-                    <RecipeForm/>
-               </Col> 
-               <Col> 
+                <Col> 
                 <div>
                     <h2>All Recipes</h2>
                     {recipes.map((r) => (
@@ -61,6 +58,9 @@ export default function RecipesPage() {
                </Col>
                <Col className="content-section mb-3 p-3 border rounded">
                    <CurrentRecipe/> 
+               </Col>
+                <Col className="content-section mb-3 p-3 border rounded">
+                    <RecipeForm/>
                </Col>
             </Row>
     </Container>
