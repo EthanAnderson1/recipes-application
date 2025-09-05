@@ -9,6 +9,14 @@ export const CurrentRecipe = ()=>{
     const [recipe,setRecipe] = useContext(RecipeContext);
     const [reviews,setReviews] = useState([]);
 
+    let rating = null;
+    if (reviews && reviews.length > 0) {
+        const total = reviews.reduce((acc, review) => acc + review.rating, 0);
+        rating = (total / reviews.length).toFixed(1);
+    } else {
+        rating = "No ratings yet";
+    }
+
     useEffect(() => {
         const fetchReviews = async () => {
                 try {
@@ -30,12 +38,13 @@ export const CurrentRecipe = ()=>{
             <h1>{recipe.title}</h1>
             <br />
             <h3>Created By: {recipe.createdBy}</h3>
-            <h3>Cooking Time: {recipe.cookingTime}</h3>
+            <h3>Cooking Time: {recipe.cookingTime} mins</h3>
             <h3>Ingredients: {recipe.ingredients?.map(
                 ingredient => <span>{ingredient} </span>
                 )}
             </h3>
             <h3>Instructions: {recipe.instructions}</h3>
+            <h3>Rating: {rating}</h3>
             <br />
             <ReviewForm />
             <br />

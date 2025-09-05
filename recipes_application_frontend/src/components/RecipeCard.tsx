@@ -21,9 +21,6 @@ export const RecipeCard = (prop: any) => {
                 <Col>
                     <p>Cooking Time: {recipeProp.cookingTime} minutes</p>
                 </Col>
-                <Col>
-                    <p>Rating: 5 stars</p>
-                </Col>
             </Row>
             <Button variant="primary" onClick={handleSelect}>Select recipe</Button>
         </Container>
